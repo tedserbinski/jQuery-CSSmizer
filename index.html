@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>jQuery CSSmizer</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jqmodal/jquery.jqmodal.js"></script>
+	<script type="text/javascript" src="jqmodal/jquery.jqdnr.js"></script>
+	<script type="text/javascript" src="tabs/jquery.tabs.js"></script>
+	<script type="text/javascript" src="farbtastic/farbtastic.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.cssmizer.js"></script>
+	<script type="text/javascript">
+
+	  $(document).ready(function() {
+	    // setup options for CSSmizer
+      var settings = {
+        'themes': {
+          'original': {
+            'css': {
+              'body': {
+                'color': '#ffffff',
+                'font-family': '"lucida grande",helvetica,verdana,arial,sans-serif',
+                'font-size': '72.5%',
+                'background-color': '#333333'
+              },
+              '#wrapper': {
+                'font-size': '13px',
+                'background': '#53abd5',
+                'border': '24px solid',
+                'border-color': '#2b2b2b',
+                'color': '#ffffff'
+              },
+              '#column-1': {
+                'width': '100%',
+                'float': 'none',
+                'margin-right': '0',
+                'padding': '0',
+                'border': 'none'
+              },
+              '#column-2': {
+                'width': '100%',
+                'float': 'none',
+                'padding': '0',
+                'border': 'none'
+              }
+            },
+            'icon': 'images/layout01.gif',
+            'name': '1 column'
+          },
+          'skittles': {
+            'css': {
+              'body': {
+                'color': '#ffffff',
+                'font-family': 'verdana,arial,sans-serif',
+                'font-size': '72.5%',
+                'background-color': '#FFCC00'
+              },
+              '#wrapper': {
+                'font-size': '11px',
+                'background': '#0099CC',
+                'border': '24px solid',
+                'border-color': '#FF6600',
+                'color': '#ffffff'
+              },
+              '#column-1': {
+                'width': '196px',
+                'float': 'left',
+                'margin-right': '1em',
+                'padding': '1em',
+                'border': '12px solid',
+                'border-color': '#ffffff'
+              },
+              '#column-2': {
+                'width': '196px',
+                'float': 'left',
+                'padding': '1em',
+                'border': '12px solid',
+                'border-color': '#ffffff'
+              }
+            },
+            'icon': 'images/layout02.gif',
+            'name': '2 column'
+          }
+        },
+        'colors': {
+          'original': {
+            'body-background-color': { 'selector': 'body', 'property': 'background-color', 'label': 'Page background' },
+            'wrapper-color': { 'selector': '#wrapper', 'property': 'color', 'label': 'Body text'},
+            'wrapper-border-color': { 'selector': '#wrapper', 'property': 'border-color', 'label': 'Page border' }
+          },
+          'skittles': {
+            'body-background-color': { 'selector': 'body', 'property': 'background-color', 'label': 'Page background' },
+            'wrapper-color': { 'selector': '#wrapper', 'property': 'color', 'label': 'Body text'},
+            'wrapper-border-color': { 'selector': '#wrapper', 'property': 'border-color', 'label': 'Page border' },
+            'column-1-border-color': { 'selector': '#column-1', 'property': 'border-color', 'label': 'Column 1 border' },
+            'column-2-border-color': { 'selector': '#column-2', 'property': 'border-color', 'label': 'Column 2 border' }
+          }
+        },
+        'fonts': {
+          'original': {
+            'body-font-family': { 'selector': 'body', 'property': 'font-family', 'label': 'Font family' },
+            'wrapper-font-size': { 'selector': '#wrapper', 'property': 'font-size', 'label': 'Content font size' }
+          },
+          'skittles': {
+            'body-font-family': { 'selector': 'body', 'property': 'font-family', 'label': 'Font family' },
+            'wrapper-font-size': { 'selector': '#wrapper', 'property': 'font-size', 'label': 'Content font size' }
+          }
+        },
+        // load the saved theme or use "original" as default
+        'defaultTheme' : $.cookie('cssmizer-theme') || 'original',
+        // load any custom user saved CSS (from altering a theme), otherwise this defaults to "original" CSS
+        'defaultCSS' : $.cookie('cssmizer-css')
+      };
+
+
+      $("#cssmizer")
+        // initialize CSSmizer
+        .cssmizer(settings)
+        // setup modal
+        .jqm({
+          trigger: "#cssmizer-launch",
+          // note we don't want to grey out the rest of the screen
+          // we can't set this to 0, otherwise everything disappears in IE6
+          overlay:1,
+          // because tabs are being shown in a jqModal window which is hidden by default
+          // we can only show the tabs *after* the window is shown
+          // otherwise we get oddities across browsers
+          onShow: function(hash) {
+            // we show the window using a speed of 1 to be as instaneous as possible
+            // and for the tabs to render as fast as possible to avoid flickering
+            hash.w.show(1, function() { $("#container").tabs(); });
+          }
+        })
+        .jqDrag('h3.title');
+
+
+      // setup main buttons
+      $("#save").click(function() {
+        $.cookie('cssmizer-css', $.getCurrentCSS());
+        $.cookie('cssmizer-theme', $.getCurrentTheme());
+        $("body").prepend('<p id="success">Customizations succesfully saved.</p>');
+        var removeSuccess = function() { $("#success").fadeOut(240, function() { $(this).remove(); }); };
+        setTimeout(removeSuccess, 3000);
+      });
+
+      $("#cancel").click(function() {
+        $.applyCSS(settings.defaultCSS);
+      });
+
+  });
+
+	</script>
+  <link rel="stylesheet" href="jqmodal/jquery.jqmodal.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="tabs/jquery.tabs.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="farbtastic/farbtastic.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+
+<div id="wrapper">
+  <a href="#" id="cssmizer-launch">Customize me!</a>
+  <div id="column-1">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  <div id="column-2">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p.>
+  </div>
+  <br style="clear:both" />
+</div>
+
+
+<div id="cssmizer" class="jqmWindow">
+  <h3 class="title">CSS<em>mize</em> this page!</h3>
+  <div id="container">
+  <ul class="tabs-nav">
+      <!-- optional specify any of these tabs and corresponding DIVs, any missing don't use that functionality -->
+      <li class="tabs-selected"><a href="#cssmizer-themes"><span>Themes</span></a></li>
+      <li><a href="#cssmizer-colors"><span>Colors</span></a></li>
+      <li><a href="#cssmizer-fonts"><span>Fonts</span></a></li>
+      <li><a href="#cssmizer-css"><span>CSS</span></a></li>
+      <li><a href="#cssmizer-about"><span>About</span></a></li>
+  </ul>
+  <div id="cssmizer-themes" class="tabs-container"></div>
+  <div id="cssmizer-colors" class="tabs-container"></div>
+  <div id="cssmizer-fonts" class="tabs-container"></div>
+  <div id="cssmizer-css" class="tabs-container">
+     <label for="css">CSS <em>(only simple CSS is supported)</em></label>
+     <textarea id="css" rows="10" cols="46"></textarea>
+  </div>
+  <div id="cssmizer-about" class="tabs-container">           <!--
+    sponsored by ChipIn (logo or badge?), other jQuery plugins, icons, etc...
+    Tested and working in:
+     - Firefox 2 (Mac)
+     - Safari 3 (Mac)
+     - IE 6 (Win)
+     - Firefox 2 (Win)
+   -->
+  </div>
+  </div>
+
+  <div id="buttons"><a href="#" id="save" class="cssmizer-button save jqmClose">Save</a><a href="#" id="cancel" class="cssmizer-button cancel jqmClose">Cancel</a><br /><br /></div>
+
+</div>
+
+
+</body>
+</html>

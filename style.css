@@ -1,0 +1,207 @@
+body {
+  background:#333;
+  font: 72.5% 'lucida grande',helvetica,verdana,arial,sans-serif;
+  color:#fff;
+}                
+
+#wrapper {
+  width:60%;
+  min-height:200px;
+  background:#53ABD5;
+  border:24px solid #2B2B2B;
+  padding:2em;
+  margin:4em auto;
+}               
+
+#cssmizer-launch {
+  display:block;
+  width:104px;
+  height:40px;
+  background:#fff;
+  float:left;
+  color:#2b2b2b;       
+  line-height:40px;
+  text-align:center;
+  margin:0 2em 1em 0;
+}                  
+
+p {
+  margin-top:0;
+}              
+
+p#warning {
+  background:#F6836B url(images/warning.png) no-repeat 0 4px;
+  border:1px solid #CE5C4B;       
+  color:#ffffff;
+  font-weight:bold;
+  padding:2px 2px 2px 20px;                                                                                 
+  margin:3px 0;
+  line-height:1.5em;
+}   
+
+p#success {       
+  position:absolute;
+  top:6px;
+  width:96%;
+  background:#6DC361 url(images/check.png) no-repeat 2px;
+  color:#fff;  
+  border:1px solid #337B2F;     
+  font-weight:bold;
+  padding:2px 2px 2px 24px;                                                                                 
+  margin:3px 0;
+  line-height:1.5em;
+}           
+
+#css-buttons {
+  margin-top:6px;      
+  height:24px;
+  background:#6DC361;
+  border:1px solid #337B2F;  
+  padding:6px;  
+  color:#ffffff;
+}
+
+h3.title {
+  margin:0 0 1em 0;
+  background:#555;
+  color:#fff;  
+  padding:1em;
+  cursor:move;
+}                         
+
+#buttons {
+  padding:1em;
+  background:#555;
+}
+
+input,input.form-text,select,textarea,input.textfield {
+vertical-align:middle;
+font:1em 'lucida grande',helvetica,verdana,arial,sans-serif;  
+color:#333;
+border:1px solid;
+border-color:#aaa #eee #eee #aaa;
+padding:.2em;
+background:#f9f9f9;
+}   
+
+label {
+  display:block;
+}              
+            
+
+#colors {
+  width:148px;
+  float:left;
+  padding:1em;
+}
+#colorpicker {
+  width:195px; 
+  float:left;
+}
+                            
+div.form-item {
+  padding:0.3em;       
+  margin-bottom:0.4em;
+  border:1px solid #fff;
+}
+div.form-item.item-selected {
+  background:#ffc;
+  border:1px solid #ff0;    
+}           
+
+.tabs-container {
+  position:relative;
+  height:248px;
+  width:96%; /* fix alignment issues in IE6 */ 
+}
+
+#cssmizer {
+  background:#fff;
+  color:#000;   
+}           
+
+#cssmizer dl.icon {
+  border:1px solid #ccc;
+  background:#eee;
+  padding:0.5em;  
+  text-align:center;
+  width:72px;          
+  cursor:pointer;     
+  float:left;
+  margin-right:1em;
+}                
+
+#cssmizer dl.icon.selected {
+  border:1px solid #ff0;
+  background:#ffc;
+}
+
+#cssmizer dl.icon dd {
+  font-weight:bold;
+  margin:0;
+  padding:0;
+}
+
+.cssmizer-button {
+  display:block;   
+  height:18px;
+  width:48px;
+  border:1px solid;
+  border-color:#eee #aaa #aaa #eee;
+  float:left;
+  text-decoration:none;
+  color:#222;
+  font-weight:bold;    
+  padding-left:22px;    
+  line-height:18px;   
+  margin-right:10px;
+}                  
+
+.cssmizer-button.apply {
+  background:#eee url(images/check.png) no-repeat 2px;
+}
+
+.cssmizer-button.cancel {
+  background:#eee url(images/cancel.png) no-repeat 2px;
+}       
+
+.cssmizer-button.revert {
+  background:#eee url(images/cancel.png) no-repeat 2px;
+}
+
+.cssmizer-button.save {
+  background:#eee url(images/save.png) no-repeat 2px;
+}
+
+
+
+/* fonts */
+.font-arial {
+  font-family:Arial;
+}
+.font-comic {
+  font-family:"Comic Sans";
+}
+.font-courier {
+  font-family:"Courier New";
+}
+.font-georgia {
+  font-family:Georgia;
+}
+.font-impact {
+  font-family:Impact;
+}
+.font-times {
+  font-family:"Times New Roman";
+}
+.font-trebuchet {
+  font-family:Trebuchet;
+}
+.font-verdana {
+  font-family:Verdana;
+}                                            
+
+.jqmWindow { 
+  width:436px;
+  padding:0;                                          
+}                        
